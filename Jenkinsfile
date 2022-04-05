@@ -19,7 +19,10 @@ stage ('Build')
 {
     steps
     {
-       sh "cd /home/ubuntu/workspace/gatewayservice-pipeline/gateway-service ; mvn clean install " 
+       sh "cd /home/ubuntu/workspace/gatewayservice-pipeline/gateway-service ; mvn sonar:sonar \
+  -Dsonar.projectKey=gateway-service \
+  -Dsonar.host.url=http://18.233.164.34:9000 \
+  -Dsonar.login=290871a21cb18cc4b7671456b031b2a0cf8455b5 " 
     }
 }
 
