@@ -19,7 +19,7 @@ stage ('Build')
 {
     steps
     {
-       sh "cd /home/ubuntu/workspace/accountservice-pipline/customer-service ; mvn clean install " 
+       sh "cd /home/ubuntu/workspace/accountservice-pipline/account-service ; mvn clean install " 
     }
 }
 
@@ -28,7 +28,7 @@ stage ('dockerimageBuild')
     {
     steps
     {
-        sh "cd /home/ubuntu/workspace/accountservice-pipline/customer-service; sudo docker build -t account-service . " 
+        sh "cd /home/ubuntu/workspace/accountservice-pipline/account-service; sudo docker build -t account-service . " 
     }
 }
      stage ('dockerimagepush ') 
@@ -48,7 +48,7 @@ stage ('k8sdeployment')
     {
        steps {
            node (' ansible') {
-             sh " sudo ansible-playbook /root/k8s.yml"
+             sh " sudo ansible-playbook /root/account-service.yml "
    
     }
 }
