@@ -21,7 +21,7 @@ stage ('Build')
     {
        sh "cd /home/ubuntu/workspace/gatewayservice-pipeline/gateway-service ; mvn sonar:sonar \
   -Dsonar.projectKey=gateway \
-  -Dsonar.host.url=http://http://18.233.164.34:9000 \
+  -Dsonar.host.url= http://35.171.8.219:9000/
   -Dsonar.login=66088a46c5d5604057703ce2b46a455c1ebd57de "
     }
 }
