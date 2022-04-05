@@ -19,7 +19,7 @@ stage ('Build')
 {
     steps
     {
-       sh "cd /home/ubuntu/workspace/gatewayservice-pipeline/ gateway-service ; mvn clean install " 
+       sh "cd /home/ubuntu/workspace/gatewayservice-pipeline/gateway-service ; mvn clean install " 
     }
 }
 
@@ -28,7 +28,7 @@ stage ('dockerimageBuild')
     {
     steps
     {
-        sh "cd /home/ubuntu/workspace/gatewayservice-pipeline/ gateway-service; sudo docker build -t  gateway-service . " 
+        sh "cd /home/ubuntu/workspace/gatewayservice-pipeline/gateway-service; sudo docker build -t  gateway-service . " 
     }
 }
      stage ('dockerimagepush ') 
