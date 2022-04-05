@@ -22,12 +22,6 @@ stage ('Build')
        sh "cd /home/ubuntu/workspace/pipeline-java/customer-service ; mvn clean install " 
     }
 }
-            steps{
-                script{
-                    withSonarQubeEnv(credentialsId: 'sonar-token') {
-                            sh 'chmod +x customer-service'
-                            sh './customer-service sonarqube'
-                    }
    
 stage ('dockerimageBuild')
     {
@@ -62,4 +56,3 @@ stage ('k8sdeployment')
     
     
 }
-   }
