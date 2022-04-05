@@ -18,8 +18,10 @@ steps
 stage ('Build') 
 {
     steps
+    script{
+      withSonarQubeEnv(credentialsId: 'sonar-token') {
+          }
     {
-        withSonarQubeEnv(credentialsId: 'sonar-token')
        sh "cd /home/ubuntu/workspace/gatewayservice-pipeline/gateway-service ; mvn sonar:sonar "
     }
 }
