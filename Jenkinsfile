@@ -19,7 +19,7 @@ stage ('Build')
 {
     steps
     {
-       sh "cd /home/ubuntu/workspace/pipeline-java/customer-service ; mvn clean install " 
+       sh "cd /home/ubuntu/workspace/accountservice-pipline/customer-service ; mvn clean install " 
     }
 }
 
@@ -28,16 +28,16 @@ stage ('dockerimageBuild')
     {
     steps
     {
-        sh "cd /home/ubuntu/workspace/pipeline-java/customer-service; sudo docker build -t customer-service . " 
+        sh "cd /home/ubuntu/workspace/accountservice-pipline/customer-service; sudo docker build -t account-service . " 
     }
 }
      stage ('dockerimagepush ') 
 {
     steps
     {
-       sh "cd /home/ubuntu/workspace/pipeline-java/customer-service ; sudo  docker login -u nagurbabu -p @Nagur336 "
-        sh "cd /home/ubuntu/workspace/pipeline-java/customer-service ; sudo docker tag customer-service nagurbabu/customer-service "
-        sh "cd /home/ubuntu/workspace/pipeline-java/customer-service ; sudo docker push nagurbabu/customer-service  "
+       sh "cd /home/ubuntu/workspace/accountservice-piplinea/account-service ; sudo  docker login -u nagurbabu -p @Nagur336 "
+        sh "cd /home/ubuntu/workspace/accountservice-pipline/account-service ; sudo docker tag customer-service nagurbabu/account-service "
+        sh "cd /home/ubuntu/workspace/accountservice-pipline/account-service ; sudo docker push nagurbabu/account-service  "
         
         
     }
