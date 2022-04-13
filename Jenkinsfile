@@ -15,14 +15,11 @@ steps
     }
     
 }
-stage ('Build') 
+stage ('upload') 
 {
     steps
     {
-       sh "cd /home/ubuntu/workspace/gatewayservice-pipeline/gateway-service ; mvn sonar:sonar \
-  -Dsonar.projectKey=gateway \
-  -Dsonar.host.url= http://35.171.8.219:9000/
-  -Dsonar.login=66088a46c5d5604057703ce2b46a455c1ebd57de "
+       nexusArtifactUploader credentialsId: 'nexus-login', groupId: '', nexusUrl: '54.159.194.44:8081', nexusVersion: 'nexus3', protocol: 'http', repository: 'http://54.159.194.44:8081/repository/maven-jar-backup/', version: ''
     }
 }
 
