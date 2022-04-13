@@ -13,17 +13,6 @@ steps
         checkout scm
         
     }
-    
-}
-stage ('upload') 
-{
-    steps
-    {
-       nexusArtifactUploader credentialsId: 'nexus-login', groupId: '', nexusUrl: '54.159.194.44:8081', nexusVersion: 'nexus3', protocol: 'http', repository: 'http://54.159.194.44:8081/repository/maven-jar-backup/', version: ''
-    }
-}
-
-   
 stage ('dockerimageBuild')
     {
     steps
