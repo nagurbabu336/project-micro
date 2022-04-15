@@ -19,7 +19,7 @@ stage ('Build')
 {
     steps
     {
-       sh "cd /home/ubuntu/workspace/accountservice-pipline/account-service ; mvn clean install " 
+       sh "cd /home/ubuntu/workspace/accountservice-pipline/account-service ; mvn clean install ; mvn test " 
     }
 }
 
