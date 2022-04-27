@@ -20,7 +20,9 @@ stage ('Build')
     steps
     {
        sh "cd /home/ubuntu/workspace/pipeline-java/discovery-service ; mvn clean install ;
-        nexusArtifactUploader artifacts: [[artifactId: 'sample-spring-microservices', classifier: '', file: '/target/*.jar', type: 'jar']], credentialsId: 'nexus-pwd', groupId: 'pl.piomin', nexusUrl: '54.166.176.163:8081/nexus', nexusVersion: 'nexus3', protocol: 'http', repository: 'devop-mvn', version: 'gateway-service-1.0-SNAPSHOT'" 
+        nexusArtifactUploader artifacts: [[artifactId: 'sample-spring-microservices', classifier: '', 
+        file: '/target/*.jar', type: 'jar']], credentialsId: 'nexus-pwd', groupId: 'pl.piomin', nexusUrl: '54.166.176.163:8081/nexus',
+        nexusVersion: 'nexus3', protocol: 'http', repository: 'devop-mvn', version: 'gateway-service-1.0-SNAPSHOT'" 
     }
 }
 
