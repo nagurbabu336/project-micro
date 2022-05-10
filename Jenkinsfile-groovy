@@ -31,7 +31,7 @@ node ('build-machinejava')
 }
 
 
-
+*
 def Checkout() 
 {
     stage('Checkout')
