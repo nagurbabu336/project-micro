@@ -1,8 +1,5 @@
 pipeline {
-agent {
-label 'buildserver'
-}
-
+agent any
 stages {
 
 stage ('Checkout') 
