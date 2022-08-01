@@ -50,7 +50,7 @@ stage ('dockerimageBuild')
                     )               
         }
     
-}   
+
 
 }
     
