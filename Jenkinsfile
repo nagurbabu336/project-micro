@@ -20,6 +20,12 @@ stage ('Build')
        sh "cd /var/lib/jenkins/workspace/account-service/account-service; mvn clean install ; " 
     }
 }
+    stage("sonar quality check"){
+            steps{
+                script{
+                    withSonarQubeEnv(credentialsId: 'sonar') {
+                            sh 'mvn sonar'
+                    }
 
    
 stage ('dockerimageBuild')
