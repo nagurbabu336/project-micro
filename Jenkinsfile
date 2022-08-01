@@ -20,6 +20,29 @@ stage ('Build')
        sh "cd /var/lib/jenkins/workspace/account-service/account-service ; mvn clean install " 
     }
 }
+    stages{
+        stage("sonar quality check"){
+            agent {
+                docker {
+                    image 'openjdk:11'
+                }
+            }
+            steps{
+                script{
+                    withSonarQubeEnv(credentialsId: 'sonar') {
+                            sh 'mvn sonar'
+                    }
+
+                    timeout(time: 1, unit: 'HOURS') {
+                      def qg = waitForQualityGate()
+                      if (qg.status != 'OK') {
+                           error "Pipeline aborted due to quality gate failure: ${qg.status}"
+                      }
+                    }
+
+                }  
+            }
+        }
 
    
 stage ('dockerimageBuild')
@@ -33,7 +56,7 @@ stage ('dockerimageBuild')
 {
     steps
     {
-       sh "cd var/lib/jenkins/workspace/account-service/account-service ; sudo  docker login -u nagurbabu -p @Nagur336 "
+       sh "cd var/lib/jenkins/workspace/account-service/account-service ; sudo  docker login $docker "
         sh "cd var/lib/jenkins/workspace/account-service/account-service ; sudo docker tag customer-service nagurbabu/account-service "
         sh "cd var/lib/jenkins/workspace/account-service/account-service ; sudo docker push nagurbabu/account-service  "
         
@@ -42,11 +65,16 @@ stage ('dockerimageBuild')
 }
  
    
-stage ('k8sdeployment') 
-    {
-       steps {
-           node (' ansible') {
-             sh " sudo ansible-playbook /root/account-service.yml "
+      stage ('K8S Deploy') {
+       
+                kubernetesDeploy(
+                    configs: 'MyAwesomeApp/springboot-lb.yaml',
+                    kubeconfigId: 'k8s',
+                    enableConfigSubstitution: true
+                    )               
+        }
+    
+}
    
     }
 }
