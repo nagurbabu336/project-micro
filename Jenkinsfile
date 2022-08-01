@@ -24,7 +24,7 @@ stage ('Build')
             steps{
                 script{
                     withSonarQubeEnv(credentialsId: 'sonar') {
-                            sh 'mvn sonar'
+                        sh "cd /var/lib/jenkins/workspace/account-service/account-service;  mvn sonar ; "
                     }
 
    
