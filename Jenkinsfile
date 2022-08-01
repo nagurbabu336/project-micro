@@ -26,6 +26,9 @@ stage ('Build')
                     withSonarQubeEnv(credentialsId: 'sonar') {
                         sh "cd /var/lib/jenkins/workspace/account-service/account-service;  mvn sonar ; "
                     }
+                    }
+                }
+        }
 
    
 stage ('dockerimageBuild')
