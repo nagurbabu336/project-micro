@@ -46,10 +46,5 @@ stage ('dockerimageBuild')
         
     }
 }
- 
-
-
-}
-    
-    
+}   
 }
