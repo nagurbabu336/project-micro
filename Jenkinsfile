@@ -41,15 +41,6 @@ stage ('dockerimageBuild')
     }
 }
  
-      stage ('K8S Deploy') {
-       
-                kubernetesDeploy(
-                    configs: 'MyAwesomeApp/springboot-lb.yaml',
-                    kubeconfigId: 'k8s',
-                    enableConfigSubstitution: true
-                    )               
-        }
-    
 
 
 }
