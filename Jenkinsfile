@@ -43,6 +43,7 @@ stage ('Build')
                 }  
             }
         }
+        }
 
    
 stage ('dockerimageBuild')
