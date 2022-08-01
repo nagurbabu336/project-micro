@@ -17,33 +17,9 @@ stage ('Build')
 {
     steps
     {
-       sh "cd /var/lib/jenkins/workspace/account-service/account-service ; mvn clean install " 
+       sh "cd /var/lib/jenkins/workspace/account-service/account-service; mvn clean install ; " 
     }
 }
-    stages{
-        stage("sonar quality check"){
-            agent {
-                docker {
-                    image 'openjdk:11'
-                }
-            }
-            steps{
-                script{
-                    withSonarQubeEnv(credentialsId: 'sonar') {
-                            sh 'mvn sonar'
-                    }
-
-                    timeout(time: 1, unit: 'HOURS') {
-                      def qg = waitForQualityGate()
-                      if (qg.status != 'OK') {
-                           error "Pipeline aborted due to quality gate failure: ${qg.status}"
-                      }
-                    }
-
-                }  
-            }
-        }
-        }
 
    
 stage ('dockerimageBuild')
@@ -57,15 +33,14 @@ stage ('dockerimageBuild')
 {
     steps
     {
-       sh "cd var/lib/jenkins/workspace/account-service/account-service ; sudo  docker login $docker "
-        sh "cd var/lib/jenkins/workspace/account-service/account-service ; sudo docker tag customer-service nagurbabu/account-service "
-        sh "cd var/lib/jenkins/workspace/account-service/account-service ; sudo docker push nagurbabu/account-service  "
+       sh "cd  /var/lib/jenkins/workspace/account-service/account-service ; sudo  docker login -u nagurbabu -p @Nagur336 "
+        sh "cd /var/lib/jenkins/workspace/account-service/account-service ; sudo docker tag account-service nagurbabu/account-service "
+        sh "cd /var/lib/jenkins/workspace/account-service/account-service; sudo docker push nagurbabu/account-service  "
         
         
     }
 }
  
-   
       stage ('K8S Deploy') {
        
                 kubernetesDeploy(
@@ -75,9 +50,9 @@ stage ('dockerimageBuild')
                     )               
         }
     
+}   
+
 }
-   
-    }
     
     
 }
