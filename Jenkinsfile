@@ -13,16 +13,19 @@ steps
     }
     
 }
-  stage("sonar quality check"){
-            steps {
-             sh "cd /var/lib/jenkins/workspace/accountservice/account-service;  
+    
+    stage ('Build') 
+{
+    steps
+    {
+      sh "cd /var/lib/jenkins/workspace/accountservice/account-service;  
                 mvn sonar:sonar \
                 -Dsonar.projectKey=account-service \
                 -Dsonar.host.url=http://54.163.202.8:9000 \
                 -Dsonar.login=ecf2fb2099b97799503afffaf96ef5c320398515; "
-            
-         }
-              }
+    }
+}
+
 stage ('Build') 
 {
     steps
